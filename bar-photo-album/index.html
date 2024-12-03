@@ -1,13 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nyangers Bar Album</title>
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to Nyangers Bar Album</h1>
     <p>More features coming soon! I will make 2 pages, one is the library, one will be the orders thanks to Andrew</p>
 
-    <!-- Add a link to the photo album -->
+    <!-- Link to go to the photo album page -->
     <a href="/bar-photo-album/">Go to Bar Photo Album</a>
+
+    <!-- Photo gallery section -->
+    <div id="photo-gallery">
+        <h2>Photo Album</h2>
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Photos will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Button to open camera -->
+    <button id="open-camera">Take a Photo</button>
+
+    <script>
+        // Array of public URLs of images stored in S3 (replace these with your actual URLs)
+        const s3Urls = [
+            'https://nyangers-bar-photo-album.s3.eu-west-2.amazonaws.com/1733193121879-testuploadnyangers.jpeg',
+            'https://nyangers-bar-photo-album.s3.eu-west-2.amazonaws.com/1733193121879-testuploadnyangers.jpeg',
+            'https://nyangers-bar-photo-album.s3.eu-west-2.amazonaws.com/1733193121879-testuploadnyangers.jpeg'
+        ];
+
+        // Function to load images into the gallery
+        function loadGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            s3Urls.forEach(url => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('gallery-item');
+                galleryItem.innerHTML = `<img src="${url}" alt="Uploaded Photo" />`;
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Call the function to load images
+        loadGallery();
+    </script>
 </body>
 </html>
