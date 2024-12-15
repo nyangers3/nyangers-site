@@ -1,14 +1,14 @@
 const gallery = document.querySelector('.gallery-grid');
 
 // Mockup: Replace this with a real API or file fetch
-const photos = [
+const media = [
     'assets/photo1.jpg',
     'assets/photo2.jpg',
     'assets/photo3.jpg'
 ];
 
-photos.forEach(photo => {
+media.forEach(media => {
     const img = document.createElement('img');
-    img.src = photo;
+    img.src = media;
     gallery.appendChild(img);
 });
